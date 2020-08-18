@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from '../components/Header.js'
 import Footer from '../components/Footer.js'
 import { NavLink, Redirect } from 'react-router-dom'
-// import mockCats from '../mockCats.js'
+import { Button, Card, CardTitle, CardText, Col } from 'reactstrap'
 
 class CatShow extends Component{
   constructor(props){
@@ -17,29 +17,30 @@ class CatShow extends Component{
     return(
       <React.Fragment>
         <Header />
-          { cat &&
-            <div>
-              <h4>Hi, my name is <strong>{ cat.name }</strong>!</h4>
-              <p>I am { cat.age }</p>
-              <p>I enjoy { cat.enjoys }</p>
-              <NavLink
-                to={`/catedit/${cat.id}`}
-              >
+        <Col sm="6" id="show-body">
+          <Card body >
+            <CardTitle>Hi, my name is { this.props.cat.name }!</CardTitle>
+            <CardText>I am { this.props.cat.age } years old. I enjoy { this.props.cat.enjoys }.</CardText>
+            <NavLink
+              to={`/catedit/${this.props.cat.id}`}
+            >
+              <Button color="secondary">
                 Edit Cat Profile
-              </NavLink>
-              <br />
-              <button
-                onClick={ () => { this.props.deleteCat(cat.id)
-                  // split promise
-                  .then(response => {
-                    this.setState({ success: true })
-                  })
-                }}
-              >
-                Delete Cat Profile
-              </button>
-            </div>
-        }
+              </Button>
+            </NavLink>
+            <br />
+            <Button color="secondary"
+              onClick={ () => { this.props.deleteCat(cat.id)
+                // split promise
+                .then(response => {
+                  this.setState({ success: true })
+                })
+              }}
+            >
+              Delete Cat Profile
+            </Button>
+          </Card>
+        </Col>
         <Footer />
         { this.state.success && <Redirect to="/catindex" />}
       </React.Fragment>

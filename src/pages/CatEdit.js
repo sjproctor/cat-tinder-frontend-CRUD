@@ -16,7 +16,6 @@ class CatEdit extends Component{
     // small amount of state to manage the form
     this.state = {
       form:{
-        id: "",
         name: "",
         age: "",
         enjoys: ""
@@ -25,32 +24,30 @@ class CatEdit extends Component{
     }
   }
 
-  handleSubmit = (event) => {
-    // keeps react from refreshing the page unnessarily
-    event.preventDefault()
+  handleSubmit = (e) => {
+    // keeps react from refreshing the page unnecessarily
+    e.preventDefault()
     // a function call being passed from App.js
-    this.props.editCat(this.state.form)
-    // after the form is sent reset the state to an empty form
+    this.props.editCat(this.state.form, this.props.cat.id)
     this.setState({ success: true })
   }
 
-  handleChange = (event) => {
+  handleChange = (e) => {
     // destructuring form out of state
     let { form } = this.state
-    form[event.target.name] = event.target.value
+    form[e.target.name] = e.target.value
     // setting state to the updated form
     this.setState({ form: form })
   }
 
   render(){
-    console.log(this.props.cat)
     return(
       <React.Fragment>
         <Header />
         <h2>Edit Cat Profile</h2>
-        <Form id="form">
+        <Form>
           <FormGroup>
-            <Label htmlFor="name" id="name">Name</Label>
+            <Label>Name</Label>
             <Input
               type="text"
               name="name"
@@ -59,7 +56,7 @@ class CatEdit extends Component{
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="age" id="age">Age</Label>
+            <Label>Age</Label>
             <Input
               type="number"
               name="age"
@@ -68,7 +65,7 @@ class CatEdit extends Component{
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="enjoys" id="enjoys">Enjoys</Label>
+            <Label>Enjoys</Label>
             <Input
               type="text"
               name="enjoys"
@@ -79,14 +76,13 @@ class CatEdit extends Component{
           <Button
             name="submit"
             color="secondary"
-            id="submit"
             onClick={ this.handleSubmit }
           >
             Edit Cat Profile
           </Button>
         </Form>
         <Footer />
-        { this.state.success && <Redirect to="/catshow/:id" />}
+        { this.state.success && <Redirect to={ `/catshow/${this.props.cat.id}` }/> }
       </React.Fragment>
     )
   }

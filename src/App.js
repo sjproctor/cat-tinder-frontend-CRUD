@@ -83,9 +83,9 @@ class App extends Component{
     })
   }
 
-  editCat = (editcat) => {
+  editCat = (editcat, id) => {
     console.log("editcat", editcat)
-    return fetch(`http://localhost:3000/cats/${editcat.id}`, {
+    return fetch(`http://localhost:3000/cats/${id}`, {
       // converting an object to a string
       body: JSON.stringify(editcat),
       // specify the info being sent in JSON and the info returning should be JSON
