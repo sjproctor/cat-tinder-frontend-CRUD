@@ -74,9 +74,8 @@ class App extends Component{
     .then(response => {
       // if the response is good  - reload the cats
       if(response.status === 200){
-        this.componentDidMount()
+        return response
       }
-      return response
     })
     .catch(errors => {
       console.log("delete errors:", errors)
@@ -98,9 +97,8 @@ class App extends Component{
     .then(response => {
       // if the response is good  - reload the cats
       if(response.status === 200){
-        this.componentDidMount()
+        return response
       }
-      return response
     })
     .catch(errors => {
       console.log("edit errors", errors)

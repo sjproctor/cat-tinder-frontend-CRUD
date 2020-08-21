@@ -29,16 +29,15 @@ class CatShow extends Component{
               </Button>
             </NavLink>
             <br />
-            <Button color="secondary"
-              onClick={ () => { this.props.deleteCat(cat.id)
-                // split promise
-                .then(response => {
-                  this.setState({ success: true })
-                })
-              }}
+            <NavLink
+              to={"/catindex"}
             >
-              Delete Cat Profile
-            </Button>
+              <Button color="secondary"
+                onClick={ () => { this.props.deleteCat(cat.id) }}
+              >
+                Delete Cat Profile
+              </Button>
+            </NavLink>
           </Card>
         </Col>
         <Footer />
