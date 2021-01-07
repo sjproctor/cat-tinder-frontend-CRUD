@@ -12,6 +12,7 @@ Pages:
 - Show
 - New
 - Edit
+- NotFound
 
 Components:
 - Header - from Reactstrap

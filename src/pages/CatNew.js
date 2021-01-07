@@ -1,91 +1,70 @@
 import React, { Component } from 'react'
-import Header from '../components/Header.js'
-import Footer from '../components/Footer.js'
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label
-} from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { Redirect } from 'react-router-dom'
 
-class CatNew extends Component{
+class CatNew extends Component {
   constructor(props){
     super(props)
-    // small amount of state to manage the form
     this.state = {
-      form:{
-        name: '',
-        age: '',
-        enjoys: ''
+      form: {
+        name: "",
+        age: "",
+        enjoys: ""
       },
-      success: false
+      submitted: false
     }
   }
-
-  handleSubmit = (event) => {
-    // keeps react from refreshing the page unnessarily
-    event.preventDefault()
-    // a function call being passed from Cat.js
-    this.props.createNewCat(this.state.form)
-    // after the form is sent reset the state to an empty form
-    this.setState({ success: true })
-  }
-
-  handleChange = (event) => {
-    // destructuring form out of state
+  handleChange = (e) => {
     let { form } = this.state
-    form[event.target.name] = event.target.value
-    // setting state to the updated form
+    form[e.target.name] = e.target.value
     this.setState({ form: form })
   }
-
-  render(){
-    return(
-      <React.Fragment>
-        <Header />
-        <h2>Add a Cat</h2>
-        <Form id="form">
+  handleSubmit = () => {
+    this.props.createCat(this.state.form)
+    this.setState({ submitted: true })
+  }
+  render() {
+    return (
+      <>
+        <h3>This is the new cat page</h3>
+        <Form>
           <FormGroup>
-            <Label htmlFor="name" id="name">Name</Label>
+            <Label>Name</Label>
             <Input
               type="text"
               name="name"
               onChange={ this.handleChange }
-              value={ this.state.form.name }
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="age" id="age">Age</Label>
+            <Label>Age</Label>
             <Input
               type="number"
               name="age"
               onChange={ this.handleChange }
-              value={ this.state.form.age }
             />
           </FormGroup>
           <FormGroup>
-            <Label htmlFor="enjoys" id="enjoys">Enjoys</Label>
+            <Label>Enjoys</Label>
             <Input
               type="text"
               name="enjoys"
               onChange={ this.handleChange }
-              value={ this.state.form.enjoys }
             />
           </FormGroup>
-          <Button
-            name="submit"
-            color="secondary"
-            id="submit"
-            onClick={ this.handleSubmit }
-          >
-            Create a New Profile
-          </Button>
         </Form>
-        <Footer />
-        { this.state.success && <Redirect to="/catindex" />}
-      </React.Fragment>
+        <Button
+          name="submit"
+          onClick={ this.handleSubmit }
+        >
+          Create a Cat New Profile
+        </Button>
+        <br />
+        <br />
+        <br />
+        <br />
+        { this.state.submitted && <Redirect to="/catindex" />}
+      </>
     )
   }
 }

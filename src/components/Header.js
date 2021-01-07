@@ -1,48 +1,22 @@
-import React, { useState }  from 'react'
-// import necessary components from reactstrap
-import {
-  Collapse,
-  Container,
-  Jumbotron,
-  Nav,
-  Navbar,
-  NavbarBrand,
-  NavLink,
-  NavItem,
-  NavbarToggler
-} from 'reactstrap'
+import React, { Component } from 'react'
+import { Jumbotron, Container } from 'reactstrap'
+import catlogo from '../assets/cat-tinder.png'
 
-// creating a functional component
-const Header = (props) => {
-  const [collapsed, setCollapsed] = useState(true)
-  const toggleNavbar = () => setCollapsed(!collapsed)
-  return (
-    <div>
-      {/* copied from reactstrap Jumbotron and Navbar */}
-      <Jumbotron fluid>
-        <Container fluid>
-          <h1 className="display-3">Cat Tinder</h1>
-          <p className="lead">It's like Tinder, but for cats.</p>
-        </Container>
-        <div>
-          <Navbar color="faded" light>
-            <NavbarBrand href="/" className="mr-auto"></NavbarBrand>
-            <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-            <Collapse isOpen={!collapsed} navbar>
-              <Nav navbar>
-                <NavItem>
-                  <NavLink href="/catindex">See All the Cats</NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink href="/catnew">Add a Cat</NavLink>
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </Navbar>
-        </div>
-      </Jumbotron>
-    </div>
-  )
+class Header extends Component {
+  render() {
+    return (
+      <>
+        <Jumbotron fluid>
+          <Container fluid>
+            <a href="/"><img src={ catlogo } alt="cat tinder logo" id="cat-logo" /></a>
+            <span id="top-nav">
+              <a href="/catindex">Meet the Cats</a> |
+              <a href="/catnew"> Add a Cat</a>
+            </span>
+          </Container>
+        </Jumbotron>
+      </>
+    )
+  }
 }
-
 export default Header

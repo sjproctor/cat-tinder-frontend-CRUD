@@ -1,20 +1,15 @@
 import React, { Component } from 'react'
-import Header from '../components/Header.js'
-import Footer from '../components/Footer.js'
-import toast from '../assets/toast.png'
-import raisins from '../assets/raisins.png'
+import toast from '../assets/toast-toes.jpg'
 
-class Home extends Component{
-  render(){
-    return(
-      <React.Fragment>
-        <Header />
-        <div id="home-body">
-          <img src={ toast } alt="Close up of a cat nose" className="cat"/>
-          <img src={ raisins } alt="Close up of a cat nose" className="cat"/>
-        </div>
-        <Footer />
-      </React.Fragment>
+class Home extends Component {
+  render() {
+    return (
+      <div className="main-body">
+        <h3>It's like Tinder but for cats.</h3>
+        <p>Find your cat a friend today!</p>
+        <p>Get started by <a href="/catnew">adding your cat</a> or meeting some <a href="/catindex">new friends</a>.</p>
+        <img src={ toast } alt="cat laying on its back" id="home-pic"/>
+      </div>
     )
   }
 }

@@ -4,21 +4,22 @@ import { Nav, NavItem, NavLink } from 'reactstrap'
 class Footer extends Component{
   render(){
     return(
-      <React.Fragment>
-        <div id="footer">
-          <Nav>
-            <NavItem>
-              <NavLink href="/">Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/catindex">All the Cats</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/catnew">Add a New Cat</NavLink>
-            </NavItem>
-          </Nav>
-        </div>
-      </React.Fragment>
+      <footer>
+        <Nav>
+          <NavItem>
+            <span className="nav-link">&copy; 2021 Sarah & Mina</span>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/catindex">Meet the Cats</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/catnew">Add a Cat</NavLink>
+          </NavItem>
+        </Nav>
+      </footer>
     )
   }
 }
